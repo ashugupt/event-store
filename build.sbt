@@ -2,75 +2,89 @@ import com.scalapenos.sbt.prompt.SbtPrompt.autoImport._
 
 lazy val root =
   (project in file("."))
-    .enablePlugins(JavaAppPackaging, GitVersioning)
+    .enablePlugins(JavaAppPackaging, GitVersioning, BuildInfoPlugin)
     .settings(commonSettings: _*)
     .settings(compilationSettings: _*)
     .settings(
-      name := "events-service"
+      name := "events-service",
+      buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
+      buildInfoPackage := "com.ashugupt.eventstore"
     )
 
 lazy val ingester =
   (project in file("ingester"))
-    .enablePlugins(JavaAppPackaging, GitVersioning)
+    .enablePlugins(JavaAppPackaging, GitVersioning, BuildInfoPlugin)
     .settings(commonSettings: _*)
     .settings(compilationSettings: _*)
     .settings(libraryDependencies ++= commonLibs ++ streamLibs)
     .settings(
-      name := "events-ingester"
+      name := "events-ingester",
+      buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
+      buildInfoPackage := "com.ashugupt.eventstore.ingester"
     )
     .dependsOn(store)
 
 lazy val http =
   (project in file("http"))
-    .enablePlugins(JavaAppPackaging, GitVersioning)
+    .enablePlugins(JavaAppPackaging, GitVersioning, BuildInfoPlugin)
     .settings(commonSettings: _*)
     .settings(compilationSettings: _*)
     .settings(libraryDependencies ++= commonLibs ++ httpLibs)
     .settings(
-      name := "events-http"
+      name := "events-http",
+      buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
+      buildInfoPackage := "com.ashugupt.eventstore.http"
     )
     .dependsOn(store, ingester)
 
 lazy val api =
   (project in file("api"))
-    .enablePlugins(JavaAppPackaging, GitVersioning)
+    .enablePlugins(JavaAppPackaging, GitVersioning, BuildInfoPlugin)
     .settings(commonSettings: _*)
     .settings(compilationSettings: _*)
     .settings(libraryDependencies ++= commonLibs ++ apiLibs)
     .settings(
-      name := "events-api"
+      name := "events-api",
+      buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
+      buildInfoPackage := "com.ashugupt.eventstore.api"
     )
     .dependsOn(store, ingester)
 
 lazy val store =
   (project in file("store"))
-    .enablePlugins(JavaAppPackaging, GitVersioning)
+    .enablePlugins(JavaAppPackaging, GitVersioning, BuildInfoPlugin)
     .settings(commonSettings: _*)
     .settings(compilationSettings: _*)
     .settings(libraryDependencies ++= commonLibs ++ storeLibs)
     .settings(
-      name := "events-store"
+      name := "events-store",
+      buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
+      buildInfoPackage := "com.ashugupt.eventstore.store"
     )
     .aggregate(storeCassandra, storeElasticSearch)
 
 lazy val storeCassandra =
   (project in file("store/store-cassandra"))
-    .enablePlugins(JavaAppPackaging, GitVersioning)
+    .enablePlugins(JavaAppPackaging, GitVersioning, BuildInfoPlugin)
     .settings(commonSettings: _*)
     .settings(compilationSettings: _*)
     .settings(libraryDependencies ++= commonLibs ++ storeLibs)
     .settings(
-      name := "events-store-cassandra"
+      name := "events-store-cassandra",
+      buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
+      buildInfoPackage := "com.ashugupt.eventstore.store.storeCassandra"
     )
 
 lazy val storeElasticSearch =
   (project in file("store/store-elasticsearch"))
-    .enablePlugins(JavaAppPackaging, GitVersioning)
+    .enablePlugins(JavaAppPackaging, GitVersioning, BuildInfoPlugin)
     .settings(commonSettings: _*)
     .settings(compilationSettings: _*)
     .settings(libraryDependencies ++= commonLibs ++ storeLibs)
     .settings(
-      name := "events-store-elasticsearch"
+      name := "events-store-elasticsearch",
+      buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion),
+      buildInfoPackage := "com.ashugupt.eventstore.store.storeElasticSearch"
     )
 
 
