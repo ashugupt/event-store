@@ -120,7 +120,7 @@ lazy val releaseSettings = Vector(
   pomIncludeRepository := { _ => false },
 
   pomExtra :=
-    <url>https://github.com/ashugupt</url>
+    <url>https://github.com/ashugupt/event-store</url>
       <licenses>
         <license>
           <name>Apache2</name>
