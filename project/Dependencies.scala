@@ -11,12 +11,12 @@ object versions {
   val akkaHttpV = "3.0.0-RC1"
 
   val shapelessV = "2.3.2"
-  val circeV = "0.6.0-RC1"
+  val circeV = "0.6.0"
 
   val akkaStreamKafkaV = "0.13"
   val akkaHttpCirceV = "1.10.1"
 
-  val catsV = "0.8.0"
+  val catsV = "0.8.1"
   val fs2V = "0.9.2"
   val fs2CatsV = "0.1.0"
 
@@ -25,9 +25,10 @@ object versions {
   val asyncHttpClientV = "2.1.0-alpha1"
 
   val elasticsearchV = "5.0.0"
-  val elastic4sV = "3.0.0.ALPHA1"
+  val elastic4sV = "5.0.0-RC1"
 
   val quillV = "1.0.0"
+  val sparkCassandraConnV = "2.0.0-M3"
 
   val kantanCsvV = "0.1.15"
 
@@ -86,6 +87,7 @@ object Dependencies {
   val elasticsearch = "org.elasticsearch" % "elasticsearch" % elasticsearchV
 
   val quillCassandra = "io.getquill" %% "quill-cassandra" % quillV
+  val sparkCassandraConnector = "com.datastax.spark" %% "spark-cassandra-connector" % sparkCassandraConnV
 
   val kafka = "org.apache.kafka" %% "kafka" % kafkaV exclude("org.slf4j", "slf4j-log4j12") exclude("log4j", "log4j")
   val kafkaAvroSerializer = "io.confluent" % "kafka-avro-serializer" % confluentV exclude("org.slf4j", "slf4j-log4j12")

@@ -190,7 +190,8 @@ lazy val commonLibs = Vector(
 lazy val storeLibs = Vector(
   Dependencies.elasticsearch,
 
-  Dependencies.quillCassandra
+  Dependencies.quillCassandra,
+  Dependencies.sparkCassandraConnector
 )
 
 lazy val streamLibs = Vector(
