@@ -95,13 +95,30 @@ lazy val commonSettings = Vector(
 
   promptTheme := com.scalapenos.sbt.prompt.PromptThemes.ScalapenosTheme,
 
+  ammonite.AmmonitePlugin.ammoniteVersion := "0.7.9",
+
   resolvers ++= Seq(
     Opts.resolver.mavenLocalFile,
     "Typesafe repository" at "https://repo.typesafe.com/typesafe/maven-releases/",
     "Confluent" at "http://packages.confluent.io/maven"
   )
 
-) ++ releaseSettings ++ tutSettings
+) ++ gitSettings ++ releaseSettings ++ tutSettings
+
+lazy val gitSettings = Vector(
+  git.baseVersion := "0.0.0",
+
+  {
+    val VersionRegex = "v([0-9]+.[0-9]+.[0-9]+)-?(.*)?".r
+
+    git.gitTagToVersionNumber := {
+      case VersionRegex(v, "") => Some(v)
+      case VersionRegex(v, "SNAPSHOT") => Some(s"$v-SNAPSHOT")
+      case VersionRegex(v, s) => Some(s"$v-$s-SNAPSHOT")
+      case _ => None
+    }
+  }
+)
 
 lazy val releaseSettings = Vector(
   // release-settings
@@ -206,6 +223,10 @@ lazy val compilationSettings = Vector(
   // compile settings
   compileOrder := CompileOrder.Mixed,
 
+  javaOptions ++= Vector(
+    "-Dammonite.version=0.7.9"
+  ),
+
   // javac settings
   javacOptions ++= Vector(
     "-g:none",
@@ -232,4 +253,3 @@ lazy val compilationSettings = Vector(
     "-Ywarn-adapted-args"
   )
 )
-
