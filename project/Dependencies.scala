@@ -8,7 +8,7 @@ object versions {
   val logbackV = "1.1.7"
 
   val akkaV = "2.4.12"
-  val akkaHttpV = "3.0.0-RC1"
+  val akkaHttpV = "10.0.0-RC2"
 
   val shapelessV = "2.3.2"
   val circeV = "0.6.0"
@@ -37,9 +37,9 @@ object versions {
   val kafkaV = "0.10.1.0"
   val confluentV = "3.0.1"
 
-  val scalatestV = "3.0.0"
+  val scalatestV = "3.0.1"
   val scalacheckV = "1.13.4"
-  val mockitoV = "2.2.10"
+  val mockitoV = "2.2.15"
 }
 
 object Dependencies {
@@ -85,6 +85,9 @@ object Dependencies {
   val asyncHttpClient = "org.asynchttpclient" % "async-http-client" % asyncHttpClientV
 
   val elasticsearch = "org.elasticsearch" % "elasticsearch" % elasticsearchV
+  val elastic4sCore = "com.sksamuel.elastic4s" %% "elastic4s-core" % elastic4sV
+  val elastic4sStreams = "com.sksamuel.elastic4s" %% "elastic4s-streams" % elastic4sV
+  val elastic4sCirce = "com.sksamuel.elastic4s" %% "elastic4s-circe" % elastic4sV
 
   val quillCassandra = "io.getquill" %% "quill-cassandra" % quillV
   val sparkCassandraConnector = "com.datastax.spark" %% "spark-cassandra-connector" % sparkCassandraConnV
